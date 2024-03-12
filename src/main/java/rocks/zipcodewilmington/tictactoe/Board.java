@@ -3,8 +3,10 @@ package rocks.zipcodewilmington.tictactoe;
 /**
  * @author leon on 6/22/18.
  */
+
+
 public class Board {
-    private final Character[][] matrix;
+    private Character[][] matrix;
 
     public Board(Character[][] matrix) {
         this.matrix = matrix;
@@ -23,19 +25,21 @@ public class Board {
     }
 
     public String getWinner() {
+
+        String result = "";
         if (isInFavorOfX()) {
-            return "X";
+            result = "X";
         } else if (isInFavorOfO()) {
-            return "O";
-        } else {
-            return null;
-        }
+            result = "O";
+       }
+        return result;
     }
 
 
     private boolean isPlayerWinning(char player) {
         return checkRows(player) || checkColumns(player) || checkDiagonals(player);
     }
+
 
     private boolean checkRows(char player) {
         for (int row = 0; row < 3; row++) {
@@ -46,6 +50,7 @@ public class Board {
         return false;
     }
 
+
     private boolean checkColumns(char player) {
         for (int col = 0; col < 3; col++) {
             if (matrix[0][col] == player && matrix[1][col] == player && matrix[2][col] == player) {
@@ -54,6 +59,7 @@ public class Board {
         }
         return false;
     }
+
 
     private boolean checkDiagonals(char player) {
         return (matrix[0][0] == player && matrix[1][1] == player && matrix[2][2] == player) ||
